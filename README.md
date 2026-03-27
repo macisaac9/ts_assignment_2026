@@ -202,27 +202,8 @@ Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-131-generic x86_64)
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
 
-  System information as of Thu 26 Mar 2026 02:31:19 AM UTC
+---
 
-  System load:  0.08               Processes:                238
-  Usage of /:   51.8% of 18.53GB   Users logged in:          1
-  Memory usage: 30%                IPv4 address for docker0: 172.17.0.1
-  Swap usage:   0%                 IPv4 address for ens33:   172.16.92.130
-
- * Ubuntu 20.04 LTS Focal Fossa has reached its end of standard support
-   on 31 May 2025.
-
-   For more details see:
-   https://ubuntu.com/20-04
-
-88 updates can be applied immediately.
-To see these additional updates run: apt list --upgradable
-
-New release '22.04.5 LTS' available.
-Run 'do-release-upgrade' to upgrade to it.
-
-
-*** System restart required ***
 Last login: Thu Mar 26 02:07:02 2026
 michael@uk8scontrol:~$
 ```
