@@ -57,12 +57,14 @@ The diagram below provides a holistic view of the home lab and all tailnet nodes
 
 
 ### Router
-The home router in use is a TP-Link Archer A10 AC2660 router. Port 22 was opened to allow SSH access to the zen7 Linux server.
+The home router in use is a TP-Link Archer A10 AC2660 router. Port 22 was previously opened to allow SSH access to the zen7 Linux server.
 
 ### Linux Server
 The first node added to the tailnet, zen7, is a Linux server running a supported and up-to-date version of Ubuntu. It has an openssh-server running on port 22 and ufw is enabled with a limit for SSH connections. SSH is configured with no root access and only one system user, michael, is an allowed user:
 
 ```
+# relevant snippet of /etc/ssh/sshd_config:
+
 # Authentication:
 
 PermitRootLogin no
@@ -286,7 +288,7 @@ As part of the assignment, there were several questions presented in the instruc
 
 Why did you chose this approach?
  - I wanted to install and test Tailscale on multiple OSes (Ubuntu, RHEL, macOS, Android).
- - I wanted to use multiple network environments (i.e., home NAT, VM NAT, mobile, corporate).
+ - I wanted to use multiple network environments (i.e., home LAN, VM NAT, mobile, corporate VLAN).
  - My personal preference is to use Linux and setting up Tailscale SSH and a subnet router on my home Linux server was very straightforward. 
 
 What would you improve with more time?
@@ -298,11 +300,11 @@ What best practices would you recommend to a customer deploying this in producti
  - Deploy the Tailscale Kubernetes Operator to the Kubernetes cluster to add the cluster to the Tailnet.
  - Deploy an Ansible server to handle the installation and configuration of Tailscale on nodes.
  - Create test suites to ensure the tailnet is configured as expected to ensure the desired access to each type of service or resource is what was intended.
- - Place the Tailscale policy file under version control.
+ - Place the Tailscale policy file under version control (e.g., git).
 
 Were any AI/LLM tools used for the assignment?
  - I used Google Gemini for assistance with the syntax of this README.md file (e.g., table of contents, table formatting) and to help ensure it would render well in GitHub.
- - I used Google Gemini to produce my network diagram by providing the tailnet and Home Lab node tables in this document, along with some additional prompts for what I wanted it to look like.
+ - I used Google Gemini to produce my network diagram by providing the Tailnet and Home Lab node tables in this document, along with some additional prompts for what I wanted it to look like.
  - I also used Google Gemini to assist with the installation of vagrant on zen7, creation of the Vagrantfile, and creation of the tailscale_setup.sh bash script.
 
 
