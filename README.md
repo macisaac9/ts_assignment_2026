@@ -45,9 +45,9 @@ In addition to zen7, pixel-9, and aiya, the home lab environment also has an old
 
 | node        | default ip    | default ip network | tailnet ip address | os type        | os version  | notes                |
 | :---------- | :------------ | :----------------- | :----------------- | :------------- | :---------- | :------------------- |
-| uk8scontrol | 172.16.92.130 | vnet NAT           |                    | Linux - Ubuntu | 20.04.5 LTS | behind subnet router |
-| uk8sworker1 | 172.16.92.131 | vnet NAT           |                    | Linux - Ubuntu | 20.04.5 LTS | behind subnet router |
-| uk8sworker2 | 172.16.92.132 | vnet NAT           |                    | Linux - Ubuntu | 20.04.5 LTS | behind subnet router |
+| uk8scontrol | 172.16.92.130 | vmnet NAT          |                    | Linux - Ubuntu | 20.04.5 LTS | behind subnet router |
+| uk8sworker1 | 172.16.92.131 | vmnet NAT          |                    | Linux - Ubuntu | 20.04.5 LTS | behind subnet router |
+| uk8sworker2 | 172.16.92.132 | vmnet NAT          |                    | Linux - Ubuntu | 20.04.5 LTS | behind subnet router |
 
 ### Network Diagram
 
@@ -88,7 +88,7 @@ A MacBook Pro, aiya, running a supported and up-to-date version of macOS was add
 
 ## Tailscale Installations
 
-Installation of tailscale on all nodes was performed as per the tailscale documentation:
+Installation of tailscale on all nodes was performed as per the excellent tailscale documentation:
  - [Linux installations](https://tailscale.com/docs/install/linux)
  - [Android installation](https://tailscale.com/docs/install/android)
  - [macOS installations (Standalone variant)](https://tailscale.com/docs/install/mac)
@@ -135,7 +135,7 @@ The grants section was intentionally left un-modified to allow for ease of testi
 
 The [Tailscale API](https://tailscale.com/api) provides a convenient option for managing tailnet policies via the tailnet API acl endpoint:
 
-tailnet/{tailnent}/acl
+tailnet/{tailnet}/acl
 
 During testing a GET request was sent to read the policy file (note that the full access token string is not shown for security purposes):
 
@@ -256,7 +256,7 @@ Vagrant was also installed on zen7 to automatically provision an Ubuntu virtual 
   }
 }
 ```
- - Copy the tailscale_setup.sh and Vagrantfile to a working directory
+ - Copy tailscale_setup.sh and Vagrantfile to a working directory
 
 **Note:** The full string for the auth key in the setup script is not included for security purposes.
 
@@ -270,7 +270,7 @@ vagrant up --provider vmware_desktop
 ### Test Subnet Routes
  - Turn off routes on zen7
   
-```json
+```bash
 sudo tailscale set --advertise-routes=""
 ```
 
@@ -282,7 +282,7 @@ The ping and ssh connection should both be successful!
 Vagrantfile
  - sets the new node hostname
  - configures vmware bridged networking
- - creates a new user, michael,
+ - creates a new user, michael
  - provisions the tailscale_setup.sh script
 
 tailscale_setup.sh
@@ -305,7 +305,7 @@ As part of the assignment, there were several questions presented in the instruc
 
 Why did you chose this approach?
  - I wanted to install and test Tailscale on multiple OSes (Ubuntu, RHEL, macOS, Android).
- - I wanted to use (and test from) multiple network environments (i.e., home NAT, VM NAT, mobile, corporate).
+ - I wanted to use multiple network environments (i.e., home NAT, VM NAT, mobile, corporate).
  - My personal preference is to use Linux and setting up Tailscale SSH and a subnet router on my home Linux server was very straightforward. 
 
 What would you improve with more time?
